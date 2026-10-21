@@ -2,7 +2,7 @@ name: Compilar APK Offline
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [ main, master, principal ]
   workflow_dispatch:
 
 jobs:
@@ -10,37 +10,37 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Descargar código
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Instalar Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '18'
 
       - name: Instalar Cordova
         run: npm install -g cordova
 
-      - name: Crear App Cordova
-        run: |
-          cordova create app com.calc.pro CalculadoraPro
-          rm -rf app/www/*
-          cp index.html app/www/
-          cd app
-          cordova platform add android
-
       - name: Configurar Java
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
           java-version: '17'
 
+      - name: Crear App Cordova y Preparar HTML
+        run: |
+          cordova create mi_app com.calc.pro CalculadoraPro
+          rm -rf mi_app/www/*
+          cp index.html mi_app/www/index.html
+          cd mi_app
+          cordova platform add android
+
       - name: Compilar APK
         run: |
-          cd app
+          cd mi_app
           cordova build android --debug
 
-      - name: Guardar APK como descarga
-        uses: actions/upload-artifact@v3
+      - name: Guardar APK
+        uses: actions/upload-artifact@v4
         with:
           name: Calculadora-Pro-Offline
-          path: app/platforms/android/app/build/outputs/apk/debug/app-debug.apk
+          path: mi_app/platforms/android/app/build/outputs/apk/debug/app-debug.apk
