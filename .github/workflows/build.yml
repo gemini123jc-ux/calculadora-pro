@@ -26,21 +26,28 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
 
-      - name: Crear App Cordova y Preparar HTML
+      - name: Crear App Cordova y Configurar Splash Screen
         run: |
           cordova create mi_app com.calc.pro CalculadoraPro
           rm -rf mi_app/www/*
           cp index.html mi_app/www/index.html
           
+          # Copiar el logo para icono y splash
           if [ -f logo.png ]; then
             mkdir -p mi_app/res/icon/android
+            mkdir -p mi_app/res/screen/android
             cp logo.png mi_app/res/icon/android/icon.png
+            cp logo.png mi_app/res/screen/android/splash.png
           fi
           
           cd mi_app
           
+          # Configurar icono y pantalla de bienvenida personalizada
           if [ -f ../logo.png ]; then
             sed -i '/<widget /a \    <icon src="res/icon/android/icon.png" />' config.xml
+            sed -i '/<widget /a \    <preference name="SplashScreen" value="screen" />' config.xml
+            sed -i '/<widget /a \    <preference name="SplashScreenDelay" value="2000" />' config.xml
+            sed -i '/<widget /a \    <preference name="AutoHideSplashScreen" value="true" />' config.xml
           fi
           
           cordova platform add android
