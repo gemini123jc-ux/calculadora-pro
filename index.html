@@ -4,71 +4,75 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <title>Calculadora</title>
+  <title>Calculadora Pro</title>
   
   <style>
     :root[data-style="feminino"][data-theme="dark"] {
-      --bg-main: #0F0A14;
-      --bg-card: #191226;
-      --bg-input: #231836;
-      --border-color: rgba(236, 72, 153, 0.2);
+      --bg-main: #0B0712;
+      --bg-card: rgba(25, 18, 38, 0.85);
+      --bg-input: rgba(35, 24, 54, 0.7);
+      --border-color: rgba(236, 72, 153, 0.25);
       --text-primary: #FCE7F3;
       --text-secondary: #F472B6;
       --text-muted: #9CA3AF;
-      --accent-gradient: linear-gradient(135deg, #EC4899 0%, #A855F7 100%);
-      --accent-shadow: 0 8px 25px rgba(236, 72, 153, 0.3);
-      --keypad-bg: #150E22;
-      --btn-normal: #211631;
-      --active-glow: 0 0 12px rgba(236, 72, 153, 0.6);
+      --accent-gradient: linear-gradient(135deg, #EC4899 0%, #8B5CF6 100%);
+      --accent-shadow: 0 10px 30px rgba(236, 72, 153, 0.4);
+      --keypad-bg: rgba(21, 14, 34, 0.9);
+      --btn-normal: rgba(33, 22, 49, 0.8);
+      --active-glow: 0 0 20px rgba(236, 72, 153, 0.8);
       --active-border: #EC4899;
+      --glass-overlay: rgba(11, 7, 18, 0.75);
     }
 
     :root[data-style="feminino"][data-theme="light"] {
       --bg-main: #FDF2F8;
-      --bg-card: #FFFFFF;
-      --bg-input: #F3E8FF;
-      --border-color: rgba(236, 72, 153, 0.2);
+      --bg-card: rgba(255, 255, 255, 0.85);
+      --bg-input: rgba(243, 232, 255, 0.8);
+      --border-color: rgba(236, 72, 153, 0.3);
       --text-primary: #831843;
       --text-secondary: #DB2777;
       --text-muted: #6B7280;
       --accent-gradient: linear-gradient(135deg, #EC4899 0%, #D946EF 100%);
-      --accent-shadow: 0 8px 20px rgba(236, 72, 153, 0.2);
-      --keypad-bg: #FCE7F3;
+      --accent-shadow: 0 10px 25px rgba(236, 72, 153, 0.25);
+      --keypad-bg: rgba(252, 231, 243, 0.9);
       --btn-normal: #FFFFFF;
-      --active-glow: 0 0 12px rgba(219, 39, 119, 0.4);
+      --active-glow: 0 0 20px rgba(219, 39, 119, 0.5);
       --active-border: #DB2777;
+      --glass-overlay: rgba(253, 242, 248, 0.75);
     }
 
     :root[data-style="masculino"][data-theme="dark"] {
-      --bg-main: #0B0E17;
-      --bg-card: #121828;
-      --bg-input: #1A2236;
-      --border-color: rgba(14, 165, 233, 0.2);
+      --bg-main: #07090E;
+      --bg-card: rgba(18, 24, 40, 0.85);
+      --bg-input: rgba(26, 34, 54, 0.7);
+      --border-color: rgba(14, 165, 233, 0.25);
       --text-primary: #F8FAFC;
       --text-secondary: #38BDF8;
       --text-muted: #64748B;
-      --accent-gradient: linear-gradient(135deg, #0EA5E9 0%, #3B82F6 100%);
-      --accent-shadow: 0 8px 25px rgba(14, 165, 233, 0.3);
-      --keypad-bg: #0E1322;
-      --btn-normal: #172033;
-      --active-glow: 0 0 12px rgba(14, 165, 233, 0.6);
+      --accent-gradient: linear-gradient(135deg, #0EA5E9 0%, #2563EB 100%);
+      --accent-shadow: 0 10px 30px rgba(14, 165, 233, 0.4);
+      --keypad-bg: rgba(14, 19, 34, 0.9);
+      --btn-normal: rgba(23, 32, 51, 0.8);
+      --active-glow: 0 0 20px rgba(14, 165, 233, 0.8);
       --active-border: #0EA5E9;
+      --glass-overlay: rgba(7, 9, 14, 0.75);
     }
 
     :root[data-style="masculino"][data-theme="light"] {
       --bg-main: #F1F5F9;
-      --bg-card: #FFFFFF;
-      --bg-input: #E2E8F0;
-      --border-color: rgba(14, 165, 233, 0.2);
+      --bg-card: rgba(255, 255, 255, 0.85);
+      --bg-input: rgba(226, 232, 240, 0.8);
+      --border-color: rgba(14, 165, 233, 0.3);
       --text-primary: #0F172A;
       --text-secondary: #0284C7;
       --text-muted: #94A3B8;
-      --accent-gradient: linear-gradient(135deg, #0EA5E9 0%, #2563EB 100%);
-      --accent-shadow: 0 8px 20px rgba(14, 165, 233, 0.2);
-      --keypad-bg: #E2E8F0;
+      --accent-gradient: linear-gradient(135deg, #0EA5E9 0%, #1D4ED8 100%);
+      --accent-shadow: 0 10px 25px rgba(14, 165, 233, 0.25);
+      --keypad-bg: rgba(226, 232, 240, 0.9);
       --btn-normal: #FFFFFF;
-      --active-glow: 0 0 12px rgba(2, 132, 199, 0.4);
+      --active-glow: 0 0 20px rgba(2, 132, 199, 0.5);
       --active-border: #0284C7;
+      --glass-overlay: rgba(241, 245, 249, 0.75);
     }
 
     * {
@@ -97,11 +101,16 @@
       justify-content: space-between;
       padding: 20px;
     }
-    .view.active {
+    .view.active { display: flex; }
+
+    /* CABECERA COMÚN PARA CALCULADORA NORMAL */
+    .normal-top-bar {
       display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      padding-bottom: 10px;
     }
 
-    /* CALCULADORA NORMAL */
     .calc-screen {
       flex: 1;
       display: flex;
@@ -109,7 +118,7 @@
       justify-content: flex-end;
       align-items: flex-end;
       padding: 20px;
-      font-size: 56px;
+      font-size: 52px;
       font-weight: 800;
       color: var(--text-primary);
       word-break: break-all;
@@ -127,9 +136,9 @@
       background: var(--btn-normal);
       border: 1px solid var(--border-color);
       color: var(--text-primary);
-      height: 70px;
-      border-radius: 20px;
-      font-size: 24px;
+      height: 66px;
+      border-radius: 22px;
+      font-size: 22px;
       font-weight: 700;
       cursor: pointer;
       display: flex;
@@ -137,15 +146,8 @@
       justify-content: center;
     }
 
-    .calc-btn:active {
-      transform: scale(0.92);
-    }
-
-    .calc-btn.op {
-      color: var(--text-secondary);
-      font-weight: 800;
-    }
-
+    .calc-btn:active { transform: scale(0.92); }
+    .calc-btn.op { color: var(--text-secondary); font-weight: 800; }
     .calc-btn.equals {
       background: var(--accent-gradient);
       color: #FFFFFF;
@@ -153,14 +155,15 @@
       box-shadow: var(--accent-shadow);
     }
 
-    /* MODO PRO PRECIOS */
+    /* MODO PRO */
     .pro-container {
       width: 100%;
       height: 100%;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 10px;
+      gap: 8px;
+      position: relative;
     }
 
     .app-header {
@@ -168,62 +171,41 @@
       justify-content: space-between;
       align-items: center;
       border-bottom: 1px solid var(--border-color);
-      padding-bottom: 10px;
+      padding-bottom: 8px;
     }
 
-    .app-title {
-      font-size: 16px;
-      font-weight: 800;
-      color: var(--text-primary);
-    }
-
-    .controls-group {
-      display: flex;
-      gap: 8px;
-    }
+    .app-title { font-size: 15px; font-weight: 800; color: var(--text-primary); }
+    .controls-group { display: flex; gap: 6px; }
 
     .icon-btn {
       background: var(--bg-input);
       border: 1px solid var(--border-color);
       color: var(--text-secondary);
-      width: 38px;
-      height: 38px;
+      width: 36px;
+      height: 36px;
       border-radius: 12px;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 800;
     }
 
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
+    .form-group { display: flex; flex-direction: column; gap: 3px; position: relative; }
+    .form-group label { font-size: 10px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; }
 
-    .form-group label {
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--text-muted);
-      text-transform: uppercase;
-    }
-
-    .input-row {
-      display: flex;
-      gap: 8px;
-    }
+    .input-row { display: flex; gap: 8px; }
 
     input {
       width: 100%;
-      height: 44px;
-      padding: 0 14px;
+      height: 42px;
+      padding: 0 12px;
       background-color: var(--bg-input);
       border: 2px solid var(--border-color);
       border-radius: 14px;
       color: var(--text-primary);
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 600;
       outline: none;
     }
@@ -231,7 +213,7 @@
     input.input-focused, .detail-card.input-focused {
       border-color: var(--active-border) !important;
       box-shadow: var(--active-glow) !important;
-      background-color: rgba(255, 255, 255, 0.05) !important;
+      background-color: rgba(255, 255, 255, 0.08) !important;
     }
 
     .currency-switch {
@@ -241,7 +223,8 @@
       border-radius: 14px;
       padding: 3px;
       width: 120px;
-      height: 44px;
+      height: 42px;
+      flex-shrink: 0;
     }
 
     .currency-btn {
@@ -249,10 +232,11 @@
       border: none;
       background: transparent;
       color: var(--text-muted);
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 800;
       border-radius: 11px;
       cursor: pointer;
+      transition: all 0.25s ease;
     }
 
     .currency-btn.active {
@@ -262,87 +246,61 @@
 
     .result-container {
       background: var(--accent-gradient);
-      border-radius: 20px;
-      padding: 16px;
+      border-radius: 18px;
+      padding: 12px;
       color: #FFFFFF;
       box-shadow: var(--accent-shadow);
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
+      gap: 8px;
       text-align: center;
     }
 
-    .result-box-item {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
+    .result-box-item { display: flex; flex-direction: column; gap: 1px; }
+    .result-box-item:first-child { border-right: 1px solid rgba(255, 255, 255, 0.25); padding-right: 6px; }
+    .result-title { font-size: 10px; font-weight: 700; text-transform: uppercase; opacity: 0.9; }
+    .result-value { font-size: 22px; font-weight: 800; }
 
-    .result-box-item:first-child {
-      border-right: 1px solid rgba(255, 255, 255, 0.25);
-      padding-right: 8px;
-    }
-
-    .result-title {
-      font-size: 11px;
-      font-weight: 600;
-      text-transform: uppercase;
-      opacity: 0.9;
-    }
-
-    .result-value {
-      font-size: 24px;
-      font-weight: 800;
-    }
-
-    .details-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-    }
+    .details-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
 
     .detail-card {
       background: var(--keypad-bg);
       border: 2px solid var(--border-color);
-      padding: 8px 10px;
+      padding: 6px 8px;
       border-radius: 14px;
       display: flex;
       flex-direction: column;
       gap: 2px;
+      position: relative;
     }
 
     .detail-card input {
       border: none !important;
       box-shadow: none !important;
       padding: 0 !important;
-      height: 28px !important;
+      height: 24px !important;
       background: transparent !important;
     }
 
-    .detail-label {
-      font-size: 9px;
-      font-weight: 700;
-      color: var(--text-muted);
-      text-transform: uppercase;
-    }
+    .detail-label { font-size: 9px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; }
 
     .keypad-container {
       background: var(--keypad-bg);
       border: 1px solid var(--border-color);
       border-radius: 18px;
-      padding: 10px;
+      padding: 8px;
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 8px;
+      gap: 6px;
     }
 
     .key-btn {
       background: var(--bg-input);
       border: 1px solid var(--border-color);
       color: var(--text-primary);
-      height: 44px;
+      height: 40px;
       border-radius: 50px;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 700;
       cursor: pointer;
       display: flex;
@@ -350,15 +308,105 @@
       justify-content: center;
     }
 
-    .key-btn:active {
-      transform: scale(0.92);
-      background: var(--text-secondary);
-      color: #FFFFFF;
+    .key-btn:active { transform: scale(0.9); background: var(--text-secondary); color: #FFFFFF; }
+    .key-btn.action { background: rgba(255,255,255,0.05); color: var(--text-secondary); }
+
+    /* TOUR GUIADO Y RESPLANDOR (7 PASOS) */
+    #tour-overlay {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: var(--glass-overlay);
+      backdrop-filter: blur(6px);
+      z-index: 100;
+      display: none;
     }
 
-    .key-btn.action {
-      background: rgba(255,255,255,0.05);
-      color: var(--text-secondary);
+    .tour-highlight {
+      position: relative;
+      z-index: 105 !important;
+      border-color: var(--active-border) !important;
+      box-shadow: 0 0 25px var(--active-border), inset 0 0 10px var(--active-border) !important;
+      background-color: rgba(255, 255, 255, 0.12) !important;
+      animation: pulseGlow 1.8s infinite alternate;
+    }
+
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 15px var(--active-border); }
+      100% { box-shadow: 0 0 30px var(--active-border), 0 0 10px var(--text-secondary); }
+    }
+
+    #tour-card {
+      position: absolute;
+      bottom: 75px;
+      left: 12px;
+      right: 12px;
+      background: var(--bg-card);
+      border: 2px solid var(--border-color);
+      border-radius: 22px;
+      padding: 16px;
+      z-index: 110;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+      backdrop-filter: blur(16px);
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+      transform: translateY(10px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    #tour-card.visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .tour-header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .tour-step-badge {
+      background: var(--accent-gradient);
+      color: #FFFFFF;
+      font-size: 9px;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 20px;
+      text-transform: uppercase;
+    }
+
+    .tour-dots { display: flex; gap: 3px; max-width: 140px; overflow-x: auto; }
+    .tour-dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--border-color);
+      transition: all 0.25s ease;
+    }
+    .tour-dot.active {
+      width: 14px; border-radius: 8px;
+      background: var(--text-secondary);
+    }
+
+    .tour-step-title { font-size: 14px; font-weight: 800; color: var(--text-primary); }
+    .tour-step-desc { font-size: 12px; font-weight: 500; color: var(--text-muted); line-height: 1.4; }
+
+    .tour-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 2px;
+    }
+
+    .tour-btn-skip {
+      background: transparent; border: none;
+      color: var(--text-muted); font-size: 11px; font-weight: 700; cursor: pointer;
+    }
+
+    .tour-btn-next {
+      background: var(--accent-gradient); border: none;
+      color: #FFFFFF; padding: 8px 18px; border-radius: 12px;
+      font-size: 12px; font-weight: 800; cursor: pointer;
+      box-shadow: var(--accent-shadow);
     }
   </style>
 </head>
@@ -366,6 +414,10 @@
 
   <!-- VISTA 1: CALCULADORA NORMAL -->
   <div id="view-normal" class="view active">
+    <div class="normal-top-bar">
+      <button class="icon-btn" onclick="toggleStyle()" title="Estilo">🎨</button>
+      <button class="icon-btn" onclick="toggleTheme()" title="Tema" id="normal-theme-btn">🌙</button>
+    </div>
     <div class="calc-screen" id="calc-screen">0</div>
     <div class="calc-keypad">
       <button class="calc-btn op" onclick="calcPress('C')">C</button>
@@ -396,52 +448,71 @@
 
   <!-- VISTA 2: MODO PRO PRECIOS -->
   <div id="view-pro" class="view">
-    <div class="pro-container">
+    <div class="pro-container" id="pro-main-container">
+      <div id="tour-overlay"></div>
+
+      <!-- Cuadro de texto flotante del tour (7 pasos) -->
+      <div id="tour-card">
+        <div class="tour-header-bar">
+          <span class="tour-step-badge" id="tour-badge">Paso 1 de 7</span>
+          <div class="tour-dots" id="tour-dots"></div>
+        </div>
+        <div class="tour-step-title" id="tour-title">Título</div>
+        <div class="tour-step-desc" id="tour-desc">Descripción...</div>
+        <div class="tour-footer">
+          <button class="tour-btn-skip" onclick="cerrarTour()">Omitir</button>
+          <button class="tour-btn-next" onclick="siguientePasoTour()" id="tour-btn-main">Siguiente</button>
+        </div>
+      </div>
+
       <div class="app-header">
         <div class="app-title">Calculadora Pro</div>
         <div class="controls-group">
-          <button class="icon-btn" onclick="toggleStyle()" title="Estilo">🎨</button>
-          <button class="icon-btn" onclick="toggleTheme()" title="Tema" id="theme-btn">🌙</button>
+          <button class="icon-btn" onclick="iniciarTour()" title="Guía">❓</button>
+          <button class="icon-btn" onclick="toggleStyle()" title="Estilo" id="tour-btn-estilo">🎨</button>
+          <button class="icon-btn" onclick="toggleTheme()" title="Tema" id="tour-btn-tema">🌙</button>
           <button class="icon-btn" onclick="bloquearModoPro()" title="Bloquear / Salir">🔒</button>
         </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-group" id="tour-step-costo">
         <label>Precio de Costo</label>
         <div class="input-row">
           <input type="text" id="input-costo" class="input-focused" placeholder="0.00" inputmode="none" readonly onfocus="this.removeAttribute('readonly');" oninput="calcularPro()" onclick="activarInput('input-costo')">
           
-          <div class="currency-switch">
+          <div class="currency-switch" id="tour-step-moneda">
             <button class="currency-btn active" id="btn-usd" onclick="cambiarMoneda('USD')">USD</button>
             <button class="currency-btn" id="btn-cup" onclick="cambiarMoneda('CUP')">CUP</button>
           </div>
           <input type="hidden" id="select-moneda" value="USD">
         </div>
-        <small id="costo-equivalente" style="color: var(--text-secondary); font-weight: 700; font-size: 11px; display: none;"></small>
+        <small id="costo-equivalente" style="color: var(--text-secondary); font-weight: 700; font-size: 11px; display: none; margin-top: 2px;"></small>
       </div>
 
       <div class="details-grid">
-        <div class="detail-card" id="card-utilidad" onclick="activarInput('input-utilidad')">
+        <div class="detail-card" id="tour-step-utilidad" onclick="activarInput('input-utilidad')">
           <span class="detail-label">Utilidad</span>
           <div style="display: flex; align-items: center; gap: 2px;">
             <input type="text" id="input-utilidad" value="30" inputmode="none" readonly onfocus="this.removeAttribute('readonly');" oninput="calcularPro()" style="font-size: 13px;">
             <span style="font-size: 12px; font-weight: 700;">%</span>
           </div>
         </div>
-        <div class="detail-card" id="card-tasa" onclick="activarInput('input-tasa')">
-          <span class="detail-label">Tasa Cambio</span>
-          <input type="text" id="input-tasa" value="320" inputmode="none" readonly onfocus="this.removeAttribute('readonly');" oninput="calcularPro()" style="font-size: 13px;">
-        </div>
-        <div class="detail-card" id="card-retiro" onclick="activarInput('input-retiro')">
+
+        <div class="detail-card" id="tour-step-retiro" onclick="activarInput('input-retiro')">
           <span class="detail-label">% Retiro</span>
           <div style="display: flex; align-items: center; gap: 2px;">
             <input type="text" id="input-retiro" value="25" inputmode="none" readonly onfocus="this.removeAttribute('readonly');" oninput="calcularPro()" style="font-size: 13px;">
             <span style="font-size: 12px; font-weight: 700;">%</span>
           </div>
         </div>
+
+        <div class="detail-card" id="tour-step-tasa" onclick="activarInput('input-tasa')">
+          <span class="detail-label">Tasa Cambio</span>
+          <input type="text" id="input-tasa" value="750" inputmode="none" readonly onfocus="this.removeAttribute('readonly');" oninput="calcularPro()" style="font-size: 13px;">
+        </div>
       </div>
 
-      <div class="result-container">
+      <div class="result-container" id="tour-step-resultado">
         <div class="result-box-item">
           <div class="result-title">Venta USD</div>
           <div class="result-value" id="res-venta-usd">$0.00</div>
@@ -512,31 +583,137 @@
       document.getElementById('view-pro').classList.add('active');
       activarInput('input-costo');
       calcularPro();
+
+      if (!localStorage.getItem('tour_visto_pro_v3')) {
+        setTimeout(iniciarTour, 400);
+      }
     }
 
     function bloquearModoPro() {
+      cerrarTour();
       document.getElementById('view-pro').classList.remove('active');
       document.getElementById('view-normal').classList.add('active');
       expr = "0";
       document.getElementById('calc-screen').innerText = expr;
     }
 
+    /* TOUR GUIADO DE 7 PASOS CON VALOR COMERCIAL FINAL */
+    let pasoActual = 0;
+    const pasosTour = [
+      {
+        el: 'tour-btn-estilo',
+        titulo: 'Paso 1: Estilo Visual',
+        desc: 'Toca este botón para alternar el diseño estético de la interfaz.'
+      },
+      {
+        el: 'tour-btn-tema',
+        titulo: 'Paso 2: Tema Claro / Oscuro',
+        desc: 'Cambia entre modo nocturno o diurno según tu preferencia visual.'
+      },
+      {
+        el: 'tour-step-moneda',
+        titulo: 'Paso 3: Moneda Base',
+        desc: 'Indica si el costo original del producto viene expresado en USD o en CUP.'
+      },
+      {
+        el: 'tour-step-costo',
+        titulo: 'Paso 4: Precio de Costo',
+        desc: 'Introduce el valor numérico del costo base usando el teclado inferior.'
+      },
+      {
+        el: 'tour-step-utilidad',
+        titulo: 'Paso 5: Margen de Utilidad',
+        desc: 'Define el porcentaje de ganancia comercial que deseas aplicarle al producto.'
+      },
+      {
+        el: 'tour-step-retiro',
+        titulo: 'Paso 6: Porcentaje de Retiro (-%)',
+        desc: 'Configura el descuento por retiro (ej. -25%), que ajusta el precio para compensar comisiones o mermas de salida.'
+      },
+      {
+        el: 'tour-step-tasa',
+        titulo: 'Paso 7: Tasa de Cambio (750)',
+        desc: 'Controla la tasa vigente (preconfigurada a 750) para garantizar conversiones exactas.'
+      },
+      {
+        el: 'tour-step-resultado',
+        titulo: '¡Listo para Vender! 🚀',
+        desc: 'Aquí obtendrás de forma instantánea el precio de venta final en USD y CUP. Una herramienta rápida, precisa y sin margen de error para tu negocio.'
+      }
+    ];
+
+    function iniciarTour() {
+      pasoActual = 0;
+      document.getElementById('tour-overlay').style.display = 'block';
+      let card = document.getElementById('tour-card');
+      card.style.display = 'flex';
+      setTimeout(() => card.classList.add('visible'), 20);
+      mostrarPasoTour();
+    }
+
+    function mostrarPasoTour() {
+      document.querySelectorAll('.tour-highlight').forEach(el => el.classList.remove('tour-highlight'));
+
+      if (pasoActual >= pasosTour.length) {
+        cerrarTour();
+        return;
+      }
+
+      let paso = pasosTour[pasoActual];
+      let elementoDom = document.getElementById(paso.el);
+      
+      if (elementoDom) {
+        elementoDom.classList.add('tour-highlight');
+      }
+
+      document.getElementById('tour-badge').innerText = `Paso ${pasoActual + 1} de ${pasosTour.length}`;
+      document.getElementById('tour-title').innerText = paso.titulo;
+      document.getElementById('tour-desc').innerText = paso.desc;
+
+      let btnMain = document.getElementById('tour-btn-main');
+      btnMain.innerText = pasoActual === pasosTour.length - 1 ? 'Empezar a Usar 🎉' : 'Siguiente';
+
+      let dotsContainer = document.getElementById('tour-dots');
+      dotsContainer.innerHTML = '';
+      for (let i = 0; i < pasosTour.length; i++) {
+        let dot = document.createElement('div');
+        dot.className = `tour-dot ${i === pasoActual ? 'active' : ''}`;
+        dotsContainer.appendChild(dot);
+      }
+    }
+
+    function siguientePasoTour() {
+      pasoActual++;
+      mostrarPasoTour();
+    }
+
+    function cerrarTour() {
+      document.querySelectorAll('.tour-highlight').forEach(el => el.classList.remove('tour-highlight'));
+      let card = document.getElementById('tour-card');
+      card.classList.remove('visible');
+      setTimeout(() => {
+        card.style.display = 'none';
+        document.getElementById('tour-overlay').style.display = 'none';
+      }, 250);
+      localStorage.setItem('tour_visto_pro_v3', 'true');
+    }
+
     function activarInput(id) {
       inputActivoPro = id;
 
       document.getElementById('input-costo').classList.remove('input-focused');
-      document.getElementById('card-utilidad').classList.remove('input-focused');
-      document.getElementById('card-tasa').classList.remove('input-focused');
-      document.getElementById('card-retiro').classList.remove('input-focused');
+      document.getElementById('tour-step-utilidad').classList.remove('input-focused');
+      document.getElementById('tour-step-retiro').classList.remove('input-focused');
+      document.getElementById('tour-step-tasa').classList.remove('input-focused');
 
       if (id === 'input-costo') {
         document.getElementById('input-costo').classList.add('input-focused');
       } else if (id === 'input-utilidad') {
-        document.getElementById('card-utilidad').classList.add('input-focused');
-      } else if (id === 'input-tasa') {
-        document.getElementById('card-tasa').classList.add('input-focused');
+        document.getElementById('tour-step-utilidad').classList.add('input-focused');
       } else if (id === 'input-retiro') {
-        document.getElementById('card-retiro').classList.add('input-focused');
+        document.getElementById('tour-step-retiro').classList.add('input-focused');
+      } else if (id === 'input-tasa') {
+        document.getElementById('tour-step-tasa').classList.add('input-focused');
       }
 
       const el = document.getElementById(id);
@@ -579,7 +756,7 @@
     }
 
     function siguienteInputPro() {
-      const inputs = ['input-costo', 'input-utilidad', 'input-tasa', 'input-retiro'];
+      const inputs = ['input-costo', 'input-utilidad', 'input-retiro', 'input-tasa'];
       let idx = inputs.indexOf(inputActivoPro);
       let nextId = inputs[(idx + 1) % inputs.length];
       activarInput(nextId);
@@ -589,7 +766,7 @@
       const costo = parseFloat(document.getElementById('input-costo').value) || 0;
       const moneda = document.getElementById('select-moneda').value;
       const utilidad = parseFloat(document.getElementById('input-utilidad').value) || 0;
-      const tasa = parseFloat(document.getElementById('input-tasa').value) || 320;
+      const tasa = parseFloat(document.getElementById('input-tasa').value) || 750;
       const porcRetiro = parseFloat(document.getElementById('input-retiro').value) || 0;
       const labelEquiv = document.getElementById('costo-equivalente');
 
@@ -618,7 +795,10 @@
       const currentTheme = html.getAttribute('data-theme');
       const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
       html.setAttribute('data-theme', newTheme);
-      document.getElementById('theme-btn').innerText = newTheme === 'dark' ? '🌙' : '☀️';
+      let iconText = newTheme === 'dark' ? '🌙' : '☀️';
+      document.getElementById('tour-btn-tema').innerText = iconText;
+      let normalBtn = document.getElementById('normal-theme-btn');
+      if (normalBtn) normalBtn.innerText = iconText;
     }
 
     function toggleStyle() {
