@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark" data-style="feminino">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>Calculadora</title>
+  
+  <style>
+    :root[data-style="feminino"][data-theme="dark"] {
+      --bg-main: #0F0A14;
+      --bg-card: #191226;
+      --bg-input: #231836;
+      --border-color: rgba(236, 72, 153, 0.2);
+      --text-primary: #FCE7F3;
+      --text-secondary: #F472B6;
+      --text-muted: #9CA3AF;
+      --accent-gradient: linear-gradient(135deg, #EC4899 0%, #A855F7 100%);
+      --accent-shadow: 0 8px 25px rgba(236, 72, 153, 0.3);
+      --keypad-bg: #150E22;
+      --btn-normal: #211631;
+      --active-glow: 0 0 12px rgba(236, 72, 153, 0.6);
+      --active-border: #EC4899;
+    }
+
+    :root[data-style="feminino"][data-theme="light"] {
+      --bg-main: #FDF2F8;
+      --bg-card: #FFFFFF;
+      --bg-input: #F3E8FF;
+      --border-color: rgba(236, 72, 153, 0.2);
+      --text-primary: #831843;
+      --text-secondary: #DB2777;
+      --text-muted: #6B7280;
+      --accent-gradient: linear-gradient(135deg, #EC4899 0%, #D946EF 100%);
+      --accent-shadow: 0 8px 20px rgba(236, 72, 153, 0.2);
+      --keypad-bg: #FCE7F3;
+      --btn-normal: #FFFFFF;
+      --active-glow: 0 0 12px rgba(219, 39, 119, 0.4);
+      --active-border: #DB2777;
+    }
+
+    :root[data-style="masculino"][data-theme="dark"] {
+      --bg-main: #0B0E17;
+      --bg-card: #121828;
+      --bg-input: #1A2236;
+      --border-color: rgba(14, 165, 233, 0.2);
+      --text-primary: #F8FAFC;
+      --text-secondary: #38BDF8;
+      --text-muted: #64748B;
+      --accent-gradient: linear-gradient(135deg, #0EA5E9 0%, #3B82F6 100%);
+      --accent-shadow: 0 8px 25px rgba(14, 165, 233, 0.3);
+      --keypad-bg: #0E1322;
+      --btn-normal: #172033;
+      --active-glow: 0 0 12px rgba(14, 165, 233, 0.6);
+      --active-border: #0EA5E9;
+    }
+
+    :root[data-style="masculino"][data-theme="light"] {
+      --bg-main: #F1F5F9;
+      --bg-card: #FFFFFF;
+      --bg-input: #E2E8F0;
+      --border-color: rgba(14, 165, 233, 0.2);
+      --text-primary: #0F172A;
+      --text-secondary: #0284C7;
+      --text-muted: #94A3B8;
+      --accent-gradient: linear-gradient(135deg, #0EA5E9 0%, #2563EB 100%);
+      --accent-shadow: 0 8px 20px rgba(14, 165, 233, 0.2);
+      --keypad-bg: #E2E8F0;
+      --btn-normal: #FFFFFF;
+      --active-glow: 0 0 12px rgba(2, 132, 199, 0.4);
+      --active-border: #0284C7;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background: var(--bg-main);
+      color: var(--text-primary);
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .view {
+      display: none;
+      width: 100%;
+      height: 100%;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 20px;
+    }
+    .view.active {
+      display: flex;
+    }
+
+    /* CALCULADORA NORMAL */
+    .calc-screen {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: flex-end;
+      padding: 20px;
+      font-size: 56px;
+      font-weight: 800;
+      color: var(--text-primary);
+      word-break: break-all;
+      text-align: right;
+    }
+
+    .calc-keypad {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      padding-bottom: 20px;
+    }
+
+    .calc-btn {
+      background: var(--btn-normal);
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      height: 70px;
+      border-radius: 20px;
+      font-size: 24px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .calc-btn:active {
+      transform: scale(0.92);
+    }
+
+    .calc-btn.op {
+      color: var(--text-secondary);
+      font-weight: 800;
+    }
+
+    .calc-btn.equals {
+      background: var(--accent-gradient);
+      color: #FFFFFF;
+      border: none;
+      box-shadow: var(--accent-shadow);
+    }
+
+    /* MODO PRO PRECIOS */
+    .pro-container {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .app-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 10px;
+    }
+
+    .app-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    .controls-group {
+      display: flex;
+      gap: 8px;
+    }
+
+    .icon-btn {
+      background: var(--bg-input);
+      border: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .form-group label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .input-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    input {
+      width: 100%;
+      height: 44px;
+      padding: 0 14px;
+      background-color: var(--bg-input);
+      border: 2px solid var(--border-color);
+      border-radius: 14px;
+      color: var(--text-primary);
+      font-size: 16px;
+      font-weight: 600;
+      outline: none;
+    }
+
+    input.input-focused, .detail-card.input-focused {
+      border-color: var(--active-border) !important;
+      box-shadow: var(--active-glow) !important;
+      background-color: rgba(255, 255, 255, 0.05) !important;
+    }
+
+    .currency-switch {
+      display: flex;
+      background: var(--bg-input);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 3px;
+      width: 120px;
+      height: 44px;
+    }
+
+    .currency-btn {
+      flex: 1;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 13px;
+      font-weight: 800;
+      border-radius: 11px;
+      cursor: pointer;
+    }
+
+    .currency-btn.active {
+      background: var(--accent-gradient);
+      color: #FFFFFF;
+    }
+
+    .result-container {
+      background: var(--accent-gradient);
+      border-radius: 20px;
+      padding: 16px;
+      color: #FFFFFF;
+      box-shadow: var(--accent-shadow);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      text-align: center;
+    }
+
+    .result-box-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .result-box-item:first-child {
+      border-right: 1px solid rgba(255, 255, 255, 0.25);
+      padding-right: 8px;
+    }
+
+    .result-title {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      opacity: 0.9;
+    }
+
+    .result-value {
+      font-size: 24px;
+      font-weight: 800;
+    }
+
+    .details-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .detail-card {
+      background: var(--keypad-bg);
+      border: 2px solid var(--border-color);
+      padding: 8px 10px;
+      border-radius: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .detail-card input {
+      border: none !important;
+      box-shadow: none !important;
+      padding: 0 !important;
+      height: 28px !important;
+      background: transparent !important;
+    }
+
+    .detail-label {
+      font-size: 9px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .keypad-container {
+      background: var(--keypad-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 18px;
+      padding: 10px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+
+    .key-btn {
+      background: var(--bg-input);
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      height: 44px;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .key-btn:active {
+      transform: scale(0.92);
+      background: var(--text-secondary);
+      color: #FFFFFF;
+    }
+
+    .key-btn.action {
+      background: rgba(255,255,255,0.05);
+      color: var(--text-secondary);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- VISTA 1: CALCULADORA NORMAL -->
+  <div id="view-normal" class="view active">
+    <div class="calc-screen" id="calc-screen">0</div>
+    <div class="calc-keypad">
+      <button class="calc-btn op" onclick="calcPress('C')">C</button>
+      <button class="calc-btn op" onclick="calcPress('DEL')">⌫</button>
+      <button class="calc-btn op" onclick="calcPress('%')">%</button>
+      <button class="calc-btn op" onclick="calcPress('/')">÷</button>
+
+      <button class="calc-btn" onclick="calcPress('7')">7</button>
+      <button class="calc-btn" onclick="calcPress('8')">8</button>
+      <button class="calc-btn" onclick="calcPress('9')">9</button>
+      <button class="calc-btn op" onclick="calcPress('*')">×</button>
+
+      <button class="calc-btn" onclick="calcPress('4')">4</button>
+      <button class="calc-btn" onclick="calcPress('5')">5</button>
+      <button class="calc-btn" onclick="calcPress('6')">6</button>
+      <button class="calc-btn op" onclick="calcPress('-')">-</button>
+
+      <button class="calc-btn" onclick="calcPress('1')">1</button>
+      <button class="calc-btn" onclick="calcPress('2')">2</button>
+      <button class="calc-btn" onclick="calcPress('3')">3</button>
+      <button class="calc-btn op" onclick="calcPress('+')">+</button>
+
+      <button class="calc-btn" onclick="calcPress('0')" style="grid-column: span 2;">0</button>
+      <button class="calc-btn" onclick="calcPress('.')">.</button>
+      <button class="calc-btn equals" onclick="calcPress('=')">=</button>
+    </div>
+  </div>
+
+  <!-- VISTA 2: MODO PRO PRECIOS -->
+  <div id="view-pro" class="view">
+    <div class="pro-container">
+      <div class="app-header">
+        <div class="app-title">Calculadora Pro</div>
+        <div class="controls-group">
+          <button class="icon-btn" onclick="toggleStyle()" title="Estilo">🎨</button>
+          <button class="icon-btn" onclick="toggleTheme()" title="Tema" id="theme-btn">🌙</button>
+          <button class="icon-btn" onclick="bloquearModoPro()" title="Bloquear / Salir">🔒</button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Precio de Costo</label>
+        <div class="input-row">
+          <input type="text" id="input-costo" class="input-focused" placeholder="0.00" inputmode="none" readonly onfocus="this.removeAttribute('readonly');" oninput="calcularPro()" onclick="activarInput('input-costo')">
+          
+          <div class="currency-switch">
+            <button class="currency-btn active" id="btn-usd" onclick="cambiarMoneda('USD')">USD</button>
+            <button class="currency-btn" id="btn-cup" onclick="cambiarMoneda('CUP')">CUP</button>
+          </div>
+          <input type="hidden" id="select-moneda" value="USD">
+        </div>
+        <small id="costo-equivalente" style="color: var(--text-secondary); font-weight: 700; font-size: 11px; display: none;"></small>
+      </div>
+
+      <div class="details-grid">
+        <div class="detail-card" id="card-utilidad" onclick="activarInput('input-utilidad')">
+          <span class="detail-label">Utilidad</span>
+          <div style="display: flex; align-items: center; gap: 2px;">
+            <input type="text" id="input-utilidad" value="30" inputmode="none" readonly onfocus="this.removeAttribute('readonly');" oninput="calcularPro()" style="font-size: 13px;">
+            <span style="font-size: 12px; font-weight: 700;">%</span>
+          </div>
+        </div>
+        <div class="detail-card" id="card-tasa" onclick="activarInput('input-tasa')">
+          <span class="detail-label">Tasa Cambio</span>
+          <input type="text" id="input-tasa" value="320" inputmode="none" readonly onfocus="this.removeAttribute('readonly');" oninput="calcularPro()" style="font-size: 13px;">
+        </div>
+        <div class="detail-card" id="card-retiro" onclick="activarInput('input-retiro')">
+          <span class="detail-label">% Retiro</span>
+          <div style="display: flex; align-items: center; gap: 2px;">
+            <input type="text" id="input-retiro" value="25" inputmode="none" readonly onfocus="this.removeAttribute('readonly');" oninput="calcularPro()" style="font-size: 13px;">
+            <span style="font-size: 12px; font-weight: 700;">%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="result-container">
+        <div class="result-box-item">
+          <div class="result-title">Venta USD</div>
+          <div class="result-value" id="res-venta-usd">$0.00</div>
+        </div>
+        <div class="result-box-item">
+          <div class="result-title">Venta CUP</div>
+          <div class="result-value" id="res-venta-cup">$0</div>
+        </div>
+      </div>
+
+      <div class="keypad-container">
+        <button class="key-btn" onclick="agregarNumeroPro('7')">7</button>
+        <button class="key-btn" onclick="agregarNumeroPro('8')">8</button>
+        <button class="key-btn" onclick="agregarNumeroPro('9')">9</button>
+        <button class="key-btn action" onclick="borrarPro()">⌫</button>
+        
+        <button class="key-btn" onclick="agregarNumeroPro('4')">4</button>
+        <button class="key-btn" onclick="agregarNumeroPro('5')">5</button>
+        <button class="key-btn" onclick="agregarNumeroPro('6')">6</button>
+        <button class="key-btn action" onclick="limpiarPro()">C</button>
+        
+        <button class="key-btn" onclick="agregarNumeroPro('1')">1</button>
+        <button class="key-btn" onclick="agregarNumeroPro('2')">2</button>
+        <button class="key-btn" onclick="agregarNumeroPro('3')">3</button>
+        <button class="key-btn action" onclick="agregarNumeroPro('.')">.</button>
+        
+        <button class="key-btn" onclick="agregarNumeroPro('0')" style="grid-column: span 2;">0</button>
+        <button class="key-btn" onclick="agregarNumeroPro('00')">00</button>
+        <button class="key-btn action" onclick="siguienteInputPro()">↵</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let expr = "0";
+    const CODIGO_SECRETO = "128122";
+
+    function calcPress(val) {
+      const screen = document.getElementById('calc-screen');
+      if (val === 'C') {
+        expr = "0";
+      } else if (val === 'DEL') {
+        expr = expr.length > 1 ? expr.slice(0, -1) : "0";
+      } else if (val === '=') {
+        if (expr === CODIGO_SECRETO) {
+          abrirModoPro();
+          expr = "0";
+          screen.innerText = expr;
+          return;
+        }
+        try {
+          let resultado = eval(expr.replace('×', '*').replace('÷', '/'));
+          expr = String(resultado);
+        } catch (e) {
+          expr = "Error";
+        }
+      } else {
+        if (expr === "0" || expr === "Error") expr = val;
+        else expr += val;
+      }
+      screen.innerText = expr;
+    }
+
+    let inputActivoPro = 'input-costo';
+
+    function abrirModoPro() {
+      document.getElementById('view-normal').classList.remove('active');
+      document.getElementById('view-pro').classList.add('active');
+      activarInput('input-costo');
+      calcularPro();
+    }
+
+    function bloquearModoPro() {
+      document.getElementById('view-pro').classList.remove('active');
+      document.getElementById('view-normal').classList.add('active');
+      expr = "0";
+      document.getElementById('calc-screen').innerText = expr;
+    }
+
+    function activarInput(id) {
+      inputActivoPro = id;
+
+      document.getElementById('input-costo').classList.remove('input-focused');
+      document.getElementById('card-utilidad').classList.remove('input-focused');
+      document.getElementById('card-tasa').classList.remove('input-focused');
+      document.getElementById('card-retiro').classList.remove('input-focused');
+
+      if (id === 'input-costo') {
+        document.getElementById('input-costo').classList.add('input-focused');
+      } else if (id === 'input-utilidad') {
+        document.getElementById('card-utilidad').classList.add('input-focused');
+      } else if (id === 'input-tasa') {
+        document.getElementById('card-tasa').classList.add('input-focused');
+      } else if (id === 'input-retiro') {
+        document.getElementById('card-retiro').classList.add('input-focused');
+      }
+
+      const el = document.getElementById(id);
+      if (el) {
+        el.setAttribute('inputmode', 'none');
+        el.blur();
+      }
+    }
+
+    function cambiarMoneda(moneda) {
+      document.getElementById('select-moneda').value = moneda;
+      if (moneda === 'USD') {
+        document.getElementById('btn-usd').classList.add('active');
+        document.getElementById('btn-cup').classList.remove('active');
+      } else {
+        document.getElementById('btn-cup').classList.add('active');
+        document.getElementById('btn-usd').classList.remove('active');
+      }
+      calcularPro();
+    }
+
+    function agregarNumeroPro(val) {
+      const el = document.getElementById(inputActivoPro);
+      if (!el) return;
+      if (val === '.' && el.value.includes('.')) return;
+      el.value += val;
+      calcularPro();
+    }
+
+    function borrarPro() {
+      const el = document.getElementById(inputActivoPro);
+      if (!el) return;
+      el.value = el.value.slice(0, -1);
+      calcularPro();
+    }
+
+    function limpiarPro() {
+      document.getElementById('input-costo').value = '';
+      calcularPro();
+    }
+
+    function siguienteInputPro() {
+      const inputs = ['input-costo', 'input-utilidad', 'input-tasa', 'input-retiro'];
+      let idx = inputs.indexOf(inputActivoPro);
+      let nextId = inputs[(idx + 1) % inputs.length];
+      activarInput(nextId);
+    }
+
+    function calcularPro() {
+      const costo = parseFloat(document.getElementById('input-costo').value) || 0;
+      const moneda = document.getElementById('select-moneda').value;
+      const utilidad = parseFloat(document.getElementById('input-utilidad').value) || 0;
+      const tasa = parseFloat(document.getElementById('input-tasa').value) || 320;
+      const porcRetiro = parseFloat(document.getElementById('input-retiro').value) || 0;
+      const labelEquiv = document.getElementById('costo-equivalente');
+
+      let costoUSD = moneda === 'CUP' ? costo / tasa : costo;
+
+      if (moneda === 'CUP' && costo > 0) {
+        labelEquiv.innerText = `Equivalente base: $${costoUSD.toFixed(2)} USD`;
+        labelEquiv.style.display = 'block';
+      } else {
+        labelEquiv.style.display = 'none';
+      }
+
+      let divisorRetiro = 1 - (porcRetiro / 100);
+      if (divisorRetiro <= 0) divisorRetiro = 0.01;
+
+      let precioConUtilidad = costoUSD * (1 + (utilidad / 100));
+      let precioFinalUSD = precioConUtilidad / divisorRetiro;
+      let precioFinalCUP = precioFinalUSD * tasa;
+
+      document.getElementById('res-venta-usd').innerText = `$${precioFinalUSD.toFixed(2)}`;
+      document.getElementById('res-venta-cup').innerText = `$${precioFinalCUP.toFixed(0)}`;
+    }
+
+    function toggleTheme() {
+      const html = document.documentElement;
+      const currentTheme = html.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', newTheme);
+      document.getElementById('theme-btn').innerText = newTheme === 'dark' ? '🌙' : '☀️';
+    }
+
+    function toggleStyle() {
+      const html = document.documentElement;
+      const currentStyle = html.getAttribute('data-style');
+      const newStyle = currentStyle === 'feminino' ? 'masculino' : 'feminino';
+      html.setAttribute('data-style', newStyle);
+    }
+  </script>
+</body>
+</html>
